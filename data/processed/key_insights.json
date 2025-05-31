@@ -1,0 +1,17 @@
+{
+  "total_registrations_latest": 408847,
+  "total_jobs_latest": 1850401,
+  "total_credit_crores": 1720636.8,
+  "avg_jobs_per_registration": 4.625910839669771,
+  "median_credit_per_msme_lakh": 326.66538350495625,
+  "top_5_states_share": 55.61395827779096,
+  "industrial_vs_non_industrial": {
+    "industrial_avg_jobs_per_reg": 6.028015453974072,
+    "non_industrial_avg_jobs_per_reg": 3.3990693021535083,
+    "industrial_avg_credit_per_reg": 537.7083019560703,
+    "non_industrial_avg_credit_per_reg": 182.1318036639459
+  },
+  "avg_registration_growth": -4.1866666666666665,
+  "avg_job_growth": -0.9199999999999998,
+  "top_growth_state": "West Bengal"
+}

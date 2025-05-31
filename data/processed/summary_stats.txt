@@ -1,0 +1,5 @@
+total_registrations_fy24: 90061
+total_jobs_fy24: 991190
+total_credit_fy24: 232102.73
+top_5_states_share: 48.6847803155639
+median_credit_per_msme: 287.67
