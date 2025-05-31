@@ -316,7 +316,7 @@ def chat_with_ai_enhanced(user_question, chart_context):
     """Enhanced AI chat with better error handling"""
     try:
         if not st.session_state.openai_api_key:
-            return "⚠️ Please enter your OpenAI API key in the sidebar to enable AI functionality."
+            return "⚠️ AI functionality is temporarily unavailable. Please contact support."
         
         from openai import OpenAI
         client = OpenAI(api_key=st.session_state.openai_api_key)
@@ -359,19 +359,20 @@ with st.sidebar:
     st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
     st.header("🔧 Control Center")
     
-    # API Key Configuration
-    api_key = st.text_input(
-        "🔑 OpenAI API Key:",
-        type="password",
-        value=st.session_state.openai_api_key,
-        help="Enter your OpenAI API key for AI-powered insights"
-    )
-    
-    if api_key:
-        st.session_state.openai_api_key = api_key
-        st.markdown('<span class="status-indicator status-online"></span>**AI Connected**', unsafe_allow_html=True)
-    else:
-        st.markdown('<span class="status-indicator status-offline"></span>**AI Disconnected**', unsafe_allow_html=True)
+    # API Key Configuration (Auto-configured)
+    try:
+        # Use Streamlit secrets for production deployment
+        if "OPENAI_API_KEY" in st.secrets:
+            st.session_state.openai_api_key = st.secrets["OPENAI_API_KEY"]
+            st.markdown('<span class="status-indicator status-online"></span>**AI Connected & Ready**', unsafe_allow_html=True)
+            st.success("🤖 AI-powered insights are enabled for all users!")
+        else:
+            st.session_state.openai_api_key = ""
+            st.markdown('<span class="status-indicator status-offline"></span>**AI Configuration Needed**', unsafe_allow_html=True)
+            st.warning("⚠️ OpenAI API key not configured in deployment secrets.")
+    except Exception as e:
+        st.session_state.openai_api_key = ""
+        st.markdown('<span class="status-indicator status-offline"></span>**AI Offline**', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
@@ -723,9 +724,10 @@ with col2:
     st.markdown("### 🤖 AI Analytics Assistant")
     
     if st.session_state.openai_api_key:
-        st.markdown('<span class="status-indicator status-online"></span>**AI Ready**', unsafe_allow_html=True)
+        st.markdown('<span class="status-indicator status-online"></span>**AI Ready for All Users**', unsafe_allow_html=True)
+        st.info("🌟 AI insights powered by GPT-4 are available for everyone!")
     else:
-        st.markdown('<span class="status-indicator status-offline"></span>**AI Offline**', unsafe_allow_html=True)
+        st.markdown('<span class="status-indicator status-offline"></span>**AI Temporarily Offline**', unsafe_allow_html=True)
     
     # Chat History
     if st.session_state.chat_history:
@@ -793,7 +795,7 @@ with col2:
                 </div>
                 """, unsafe_allow_html=True)
         else:
-            st.warning("Please select a chart and enter a question!")
+            st.warning("Please select a chart above and enter a question!")
     
     st.markdown('</div>', unsafe_allow_html=True)
 
