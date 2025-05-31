@@ -5,6 +5,7 @@
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://msme-ai-dashboard.streamlit.app)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![OpenAI GPT-4](https://img.shields.io/badge/OpenAI-GPT--4-green.svg)](https://openai.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-rahil911%2Fmsme--ai--dashboard-blue.svg)](https://github.com/rahil911/msme-ai-dashboard)
 
 ## 🌟 Features
 
@@ -34,13 +35,14 @@ Visit the [live dashboard](https://msme-ai-dashboard.streamlit.app) and start ex
 ### Option 2: Run Locally
 ```bash
 # Clone repository
-git clone https://github.com/your-username/msme-ai-dashboard.git
+git clone https://github.com/rahil911/msme-ai-dashboard.git
 cd msme-ai-dashboard
 
-# Install dependencies
-pip install -r streamlit_requirements.txt
+# Quick launch (recommended)
+./launch.sh
 
-# Run dashboard
+# Or manual setup
+pip install -r streamlit_requirements.txt
 streamlit run interactive_ai_dashboard.py
 ```
 
@@ -82,7 +84,7 @@ Contributions welcome! Please read our contributing guidelines.
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/msme-ai-dashboard/issues)
+- **Issues**: [GitHub Issues](https://github.com/rahil911/msme-ai-dashboard/issues)
 - **Email**: rahil911@uw.edu
 
 ---
