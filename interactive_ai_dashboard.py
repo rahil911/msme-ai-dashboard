@@ -926,8 +926,8 @@ with col1:
     # Slideshow Container
     st.markdown("""
     <div class="slideshow-container">
-    """, unsafe_allow_html=True)
-    
+        """, unsafe_allow_html=True)
+        
     # Navigation JavaScript
     st.markdown("""
     <script>
@@ -1145,17 +1145,17 @@ with col1:
             with st.container():
                 st.markdown('<div class="chart-container">', unsafe_allow_html=True)
                 st.markdown('<h4 style="text-align:center; color:#00cccc; font-family: Orbitron, monospace;">🚀 Export Growth Trajectory (Slide View)</h4>', unsafe_allow_html=True)
-                
+        
                 # Filter export_projection data based on global time_horizon or year_range if applicable
                 # For this example, let's assume export_projection data aligns with the full range or specific years
                 # If year_range from global filter is (2024, 2030), it would filter this data. We might need a more specific filter for projections.
-                
+        
                 fig_export_slide = go.Figure()
                 fig_export_slide.add_trace(go.Scatter(
                     x=export_projection['Year'], # Assuming export_projection is already correctly filtered or covers the range
-                    y=export_projection['Export_Percent_GDP'],
-                    mode='lines+markers',
-                    name='Total Exports (% GDP)',
+            y=export_projection['Export_Percent_GDP'],
+            mode='lines+markers',
+            name='Total Exports (% GDP)',
                     line=dict(color='#1ABC9C', width=3),
                     marker=dict(size=9, symbol="star-diamond"),
                     fill='tozeroy', # Fill to y=0
@@ -1163,10 +1163,10 @@ with col1:
                     hovertemplate='<b>Total Exports:</b> %{y:.2f}% of GDP<br>Year: %{x}<extra></extra>'
                 ))
                 fig_export_slide.add_trace(go.Scatter(
-                    x=export_projection['Year'],
-                    y=export_projection['MSME_Export_Share'],
-                    mode='lines+markers',
-                    name='MSME Export Share (%)',
+            x=export_projection['Year'],
+            y=export_projection['MSME_Export_Share'],
+            mode='lines+markers',
+            name='MSME Export Share (%)',
                     line=dict(color='#9B59B6', width=3, dash='dash'),
                     marker=dict(size=9, symbol="triangle-up"),
                     yaxis='y2',
@@ -1178,7 +1178,7 @@ with col1:
                                         annotation_font=dict(color="#E74C3C"))
 
                 fig_export_slide.update_layout(
-                    height=600,
+            height=600,
                     font=dict(family="Inter", color="#00cccc", size=12),
                     paper_bgcolor='rgba(5,5,5,0.95)', 
                     plot_bgcolor='rgba(10,10,20,0.6)',
@@ -1210,7 +1210,7 @@ with col1:
                     x=top_n_states['State'],
                     y=top_n_states['MSME_Count'],
                     name='MSME Count by State',
-                    marker=dict(
+            marker=dict(
                         color=cyber_colors[:len(top_n_states)], # Apply colors
                         line=dict(color='rgba(255,255,255,0.5)', width=1)
                     ),
@@ -1222,19 +1222,19 @@ with col1:
                 ))
                 
                 fig_regional_slide.update_layout(
-                    height=600,
+            height=600,
                     font=dict(family="Inter", color="#00cccc", size=12),
                     paper_bgcolor='rgba(5,5,5,0.95)', 
                     plot_bgcolor='rgba(10,10,20,0.6)',
                     showlegend=False, # Bar charts often don't need a legend for a single trace
-                    xaxis=dict(
+            xaxis=dict(
                         title="State / Union Territory", 
                         gridcolor='rgba(0,204,204,0.1)', 
                         color="#00cccc", 
                         tickangle=-45, # Angled ticks for better readability
                         tickfont=dict(size=11)
-                    ),
-                    yaxis=dict(
+            ),
+            yaxis=dict(
                         title="Number of MSME Enterprises", 
                         gridcolor='rgba(0,204,204,0.1)', 
                         color="#00cccc",
@@ -1374,7 +1374,7 @@ with col1:
                     <li><strong>Digital Revolution:</strong> Target Digital Commerce (18.5% CAGR), FinTech (16.2% CAGR), and HealthTech (14.8% CAGR).</li>
                     <li><strong>Investment Focus:</strong> Channel resources into sectors with high Employment Multipliers and Digital Readiness.</li>
                 </ul>
-            </div>
+        </div>
         </div>
         ''', unsafe_allow_html=True)
 
@@ -1423,7 +1423,7 @@ with col1:
             </div>
         </div>
         """, unsafe_allow_html=True)
-
+    
         openai_api_key_input = st.text_input(
             "🔑 Enter OpenAI API Key:", 
             type="password", 
@@ -1442,7 +1442,7 @@ with col1:
         st.markdown("""
             <div class="chat-interface">
         """, unsafe_allow_html=True)
-
+    
         if st.session_state.chat_history:
             for role, text in st.session_state.chat_history[-10:]:
                 if role == "user":
@@ -1484,91 +1484,91 @@ with col1:
                 <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
             </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
     # Final script cleanup: Remove any trailing/extra st.markdown('</div>', unsafe_allow_html=True) that might be left from old structures.
     # This is hard to do without seeing the full file context after this edit.
 
     # ... (This section seemed okay) ...
 
-    # AI Chat Panel (Right Column)
-    with col2:
-        st.markdown('<div class="ai-chat-container">', unsafe_allow_html=True)
-        st.markdown("### 🤖 AI Analytics Assistant")
-        
-        if st.session_state.openai_api_key:
-            st.markdown('<span class="status-indicator status-online"></span>**AI Ready for All Users**', unsafe_allow_html=True)
-            st.info("🌟 AI insights powered by GPT-4 are available for everyone!")
+# AI Chat Panel (Right Column)
+with col2:
+    st.markdown('<div class="ai-chat-container">', unsafe_allow_html=True)
+    st.markdown("### 🤖 AI Analytics Assistant")
+    
+    if st.session_state.openai_api_key:
+        st.markdown('<span class="status-indicator status-online"></span>**AI Ready for All Users**', unsafe_allow_html=True)
+        st.info("🌟 AI insights powered by GPT-4 are available for everyone!")
+    else:
+        st.markdown('<span class="status-indicator status-offline"></span>**AI Temporarily Offline**', unsafe_allow_html=True)
+    
+    # Chat History
+    if st.session_state.chat_history:
+        st.markdown("#### 💬 Recent Conversations")
+        for i, chat in enumerate(st.session_state.chat_history[-2:]):
+            with st.expander(f"💡 {chat['question'][:30]}..."):
+                st.markdown(f"**Q:** {chat['question']}")
+                st.markdown(f"**AI:** {chat['response']}")
+                st.caption(f"⏰ {chat.get('timestamp', 'Unknown time')}")
+    
+    # Current question
+    st.markdown("#### ❓ Ask About Current Analysis")
+    
+    if st.session_state.selected_chart:
+        st.info(f"📊 Context: {st.session_state.selected_chart}")
+    
+    user_question = st.text_area(
+        "Your question:",
+        placeholder="e.g., 'What are the top investment opportunities?' or 'How can we achieve 25% export target?'",
+        height=100,
+        key="ai_question"
+    )
+    
+    # Quick question buttons
+    st.markdown("**⚡ Quick Questions:**")
+    quick_questions = [
+        "💰 Investment opportunities?",
+        "📈 Growth drivers?", 
+        "🎯 Strategic priorities?",
+        "🌍 Export potential?"
+    ]
+    
+    cols = st.columns(2)
+    for i, question in enumerate(quick_questions):
+        with cols[i % 2]:
+            if st.button(question, key=f"quick_{i}", use_container_width=True):
+                if st.session_state.selected_chart and st.session_state.openai_api_key:
+                    with st.spinner("🧠 AI analyzing..."):
+                        response = chat_with_ai_enhanced(question, st.session_state.ai_context)
+                        st.session_state.chat_history.append({
+                            "question": question,
+                            "response": response,
+                            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                            "chart": st.session_state.selected_chart
+                        })
+                        st.rerun()
+    
+    # Main AI query button
+    if st.button("🚀 Get AI Insights", disabled=not st.session_state.openai_api_key, use_container_width=True):
+        if user_question and st.session_state.selected_chart:
+            with st.spinner("🤔 AI is analyzing data..."):
+                response = chat_with_ai_enhanced(user_question, st.session_state.ai_context)
+                
+                st.session_state.chat_history.append({
+                    "question": user_question,
+                    "response": response,
+                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                    "chart": st.session_state.selected_chart
+                })
+                
+                st.markdown("#### 🎯 AI Response")
+                st.markdown(f"""
+                <div class="insight-card">
+                    {response}
+                </div>
+                """, unsafe_allow_html=True)
         else:
-            st.markdown('<span class="status-indicator status-offline"></span>**AI Temporarily Offline**', unsafe_allow_html=True)
-        
-        # Chat History
-        if st.session_state.chat_history:
-            st.markdown("#### 💬 Recent Conversations")
-            for i, chat in enumerate(st.session_state.chat_history[-2:]):
-                with st.expander(f"💡 {chat['question'][:30]}..."):
-                    st.markdown(f"**Q:** {chat['question']}")
-                    st.markdown(f"**AI:** {chat['response']}")
-                    st.caption(f"⏰ {chat.get('timestamp', 'Unknown time')}")
-        
-        # Current question
-        st.markdown("#### ❓ Ask About Current Analysis")
-        
-        if st.session_state.selected_chart:
-            st.info(f"📊 Context: {st.session_state.selected_chart}")
-        
-        user_question = st.text_area(
-            "Your question:",
-            placeholder="e.g., 'What are the top investment opportunities?' or 'How can we achieve 25% export target?'",
-            height=100,
-            key="ai_question"
-        )
-        
-        # Quick question buttons
-        st.markdown("**⚡ Quick Questions:**")
-        quick_questions = [
-            "💰 Investment opportunities?",
-            "📈 Growth drivers?", 
-            "🎯 Strategic priorities?",
-            "🌍 Export potential?"
-        ]
-        
-        cols = st.columns(2)
-        for i, question in enumerate(quick_questions):
-            with cols[i % 2]:
-                if st.button(question, key=f"quick_{i}", use_container_width=True):
-                    if st.session_state.selected_chart and st.session_state.openai_api_key:
-                        with st.spinner("🧠 AI analyzing..."):
-                            response = chat_with_ai_enhanced(question, st.session_state.ai_context)
-                            st.session_state.chat_history.append({
-                                "question": question,
-                                "response": response,
-                                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
-                                "chart": st.session_state.selected_chart
-                            })
-                            st.rerun()
-        
-        # Main AI query button
-        if st.button("🚀 Get AI Insights", disabled=not st.session_state.openai_api_key, use_container_width=True):
-            if user_question and st.session_state.selected_chart:
-                with st.spinner("🤔 AI is analyzing data..."):
-                    response = chat_with_ai_enhanced(user_question, st.session_state.ai_context)
-                    
-                    st.session_state.chat_history.append({
-                        "question": user_question,
-                        "response": response,
-                        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
-                        "chart": st.session_state.selected_chart
-                    })
-                    
-                    st.markdown("#### 🎯 AI Response")
-                    st.markdown(f"""
-                    <div class="insight-card">
-                        {response}
-                    </div>
-                    """, unsafe_allow_html=True)
-            else:
-                st.warning("Please select a chart above and enter a question!")
-        
-        st.markdown('</div>', unsafe_allow_html=True)
+            st.warning("Please select a chart above and enter a question!")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
