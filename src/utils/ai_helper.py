@@ -2,6 +2,7 @@ import streamlit as st # For session_state and secrets
 import openai # For OpenAI client
 import json # Though not used in current functions, good to keep if future AI responses are complex JSON
 import httpx # Import httpx
+import os # Import os to access environment variables
 
 def get_enhanced_chart_context(chart_type, data_summary, filters):
     filter_context = f"""
@@ -46,14 +47,23 @@ def get_enhanced_chart_context(chart_type, data_summary, filters):
 
 def chat_with_ai_enhanced(user_question, chart_context):
     try:
-        api_key = st.session_state.get('openai_api_key')
-        if not api_key:
-            if "OPENAI_API_KEY" in st.secrets:
-                 api_key = st.secrets["OPENAI_API_KEY"]
-                 st.session_state.openai_api_key = api_key
+        # Prioritize environment variable (loaded from .env locally, or set in deployment)
+        api_key = os.environ.get('OPENAI_API_KEY')
+        
+        # Fallback to st.secrets (for Streamlit Cloud)
+        if not api_key and "OPENAI_API_KEY" in st.secrets:
+            api_key = st.secrets["OPENAI_API_KEY"]
+        
+        # Fallback to session_state (if user manually entered, less ideal now)
+        if not api_key and st.session_state.get('openai_api_key'):
+            api_key = st.session_state.get('openai_api_key')
 
         if not api_key:
-            return "⚠️ AI functionality requires an OpenAI API key. Please set it up."
+            return "⚠️ AI functionality requires an OpenAI API key. Please set it up in .env, Streamlit Cloud secrets, or enter it in the app."
+        
+        # Update session_state if a key was found from env or secrets, for consistency in UI
+        if api_key and not st.session_state.get('openai_api_key'):
+             st.session_state.openai_api_key = api_key
 
         client = openai.OpenAI(api_key=api_key)
 
