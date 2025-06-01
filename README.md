@@ -1,92 +1,53 @@
-# 🚀 AI-Powered India MSME Analytics Platform
+# Quantum MSME Analytics Dashboard
 
-> **Advanced Interactive Dashboard with OpenAI GPT-4 Integration for Real-time MSME Sector Analysis**
+This project is a Streamlit-based interactive AI dashboard for analyzing India's MSME (Micro, Small & Medium Enterprises) ecosystem.
 
-[![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://msme-ai-dashboard.streamlit.app)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![OpenAI GPT-4](https://img.shields.io/badge/OpenAI-GPT--4-green.svg)](https://openai.com/)
-[![GitHub](https://img.shields.io/badge/GitHub-rahil911%2Fmsme--ai--dashboard-blue.svg)](https://github.com/rahil911/msme-ai-dashboard)
+## Setup
 
-## 🌟 Features
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <repository-name>
+    ```
 
-- 🤖 **AI-Powered Insights**: Click any chart and ask questions to GPT-4
-- 📊 **Interactive Visualizations**: Professional BCG-style charts and analytics
-- 🎛️ **Advanced Filtering**: Real-time data filtering and analysis
-- 📱 **Mobile Responsive**: Works seamlessly across all devices
-- 🌐 **Cloud Ready**: Deployed on Streamlit Community Cloud for free
-- ⚡ **Real-time Data**: Economic indicators from World Bank, OECD, WTO
+2.  **Create and activate a virtual environment (recommended):**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
 
-## 🚀 Live Demo
+3.  **Install dependencies:**
+    ```bash
+    pip install -r streamlit_requirements.txt
+    ```
 
-**[👉 View Live Dashboard](https://msme-ai-dashboard.streamlit.app)**
+4.  **Set up OpenAI API Key:**
+    The application uses an OpenAI API key for its AI chat functionality. You can set this in one of two ways:
+    *   **Secrets Management (Streamlit Sharing/Cloud):** If deploying to Streamlit Cloud, add your OpenAI API key as a secret named `OPENAI_API_KEY`.
+    *   **Local Input:** When running locally, the application will prompt you to enter your OpenAI API key in the sidebar if it's not found in secrets.
 
-## 📈 Key Analytics
+## Running the Application
 
-- **Economic Foundation**: GDP growth, labor force, digital adoption trends
-- **MSME Opportunities**: Sector-wise growth potential and market sizing
-- **Export Strategy**: Path to 25% GDP export target by 2030
-- **Regional Analysis**: State-wise MSME performance and opportunities
+To run the Streamlit application locally, use the following command:
 
-## 🔧 Quick Start
-
-### Option 1: Use Live Dashboard
-Visit the [live dashboard](https://msme-ai-dashboard.streamlit.app) and start exploring!
-
-### Option 2: Run Locally
 ```bash
-# Clone repository
-git clone https://github.com/rahil911/msme-ai-dashboard.git
-cd msme-ai-dashboard
-
-# Quick launch (recommended)
-./launch.sh
-
-# Or manual setup
-pip install -r streamlit_requirements.txt
 streamlit run interactive_ai_dashboard.py
 ```
 
-## 🔑 Setup
+Or, if you are using the `launch.sh` script:
 
-1. **Get OpenAI API Key**: Visit [OpenAI Platform](https://platform.openai.com/api-keys)
-2. **Add API Key**: Enter in the dashboard sidebar
-3. **Start Chatting**: Click any chart and ask questions!
+```bash
+bash launch.sh
+```
 
-## 📊 Data Sources
+The application should open in your default web browser.
 
-- 🏛️ **World Bank**: Development Indicators (2010-2024)
-- 📈 **OECD**: Economic Growth Data
-- 🌍 **WTO**: Trade Statistics
-- 🏭 **Government**: MSME Registration Data
-- 🌡️ **NASA**: Climate and Environmental Data
+## Files for Deployment
 
-## 🎯 Use Cases
+*   `interactive_ai_dashboard.py`: The main Streamlit application file.
+*   `streamlit_requirements.txt`: Contains the Python package dependencies.
+*   `launch.sh`: (Optional) A shell script that can be used to launch the application, potentially with specific configurations.
+*   `data/`: This directory should contain necessary data files, such as `data/raw/wb_combined_indicators.csv`.
+*   `output/images/`: This directory should contain any static images used by the dashboard, like chapter visualizations.
 
-- **Investment Analysis**: Identify high-growth MSME sectors
-- **Policy Development**: Data-driven government strategy
-- **Academic Research**: Economic trend analysis
-- **Business Strategy**: Market entry and expansion planning
-
-## 🛠️ Technology Stack
-
-- **Frontend**: Streamlit, Plotly, Custom CSS
-- **AI**: OpenAI GPT-4 API
-- **Data**: Pandas, NumPy
-- **Deployment**: Streamlit Community Cloud
-
-## 📝 License
-
-MIT License - see [LICENSE](LICENSE) for details.
-
-## 🤝 Contributing
-
-Contributions welcome! Please read our contributing guidelines.
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/rahil911/msme-ai-dashboard/issues)
-- **Email**: rahil911@uw.edu
-
----
-
-**Built with ❤️ for advancing India's MSME ecosystem understanding** 
+Make sure these files and directories are pushed to your GitHub repository for Streamlit Cloud deployment. 
