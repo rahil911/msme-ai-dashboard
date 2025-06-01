@@ -793,12 +793,15 @@ with col1:
 
         # --- API Key Handling --- 
         # Attempt to load from st.secrets first
-        if 'openai_api_key' not in st.session_state or not st.session_state.openai_api_key:
-            if "OPENAI_API_KEY" in st.secrets:
-                st.session_state.openai_api_key = st.secrets["OPENAI_API_KEY"]
-                st.success("🔑 OpenAI API Key loaded securely from secrets. AI features enabled.")
-            else:
-                st.session_state.openai_api_key = "" # Ensure it's initialized if not in secrets
+        try:
+            if 'openai_api_key' not in st.session_state or not st.session_state.openai_api_key:
+                if "OPENAI_API_KEY" in st.secrets:
+                    st.session_state.openai_api_key = st.secrets["OPENAI_API_KEY"]
+                    st.success("🔑 OpenAI API Key loaded securely from secrets. AI features enabled.")
+                else:
+                    st.session_state.openai_api_key = ""  # Ensure it's initialized if not in secrets
+        except Exception:
+            st.session_state.openai_api_key = ""
         
         # Only show input if key is not loaded from secrets
         if not st.session_state.get("openai_api_key"): 
@@ -815,11 +818,9 @@ with col1:
         if not st.session_state.get("openai_api_key"):
             st.warning("Please enter your OpenAI API key above, or set it in `secrets.toml` (local) / Streamlit Cloud secrets (deployed) to enable AI features.")
         elif not st.session_state.openai_api_key.startswith("sk-"):
-             st.warning("Invalid OpenAI API Key format. It should start with 'sk-'. Please check and re-enter.")
+            st.warning("Invalid OpenAI API Key format. It should start with 'sk-'. Please check and re-enter.")
         else:
-            # This success message is now shown when loaded from secrets or after valid input
-            if "OPENAI_API_KEY" not in st.secrets: # Only show if not loaded from secrets initially
-                 st.success("OpenAI API Key accepted. AI features enabled.")
+            st.success("OpenAI API Key accepted. AI features enabled.")
         # --- End API Key Handling ---
             
         st.markdown("""
