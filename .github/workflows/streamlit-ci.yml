@@ -1,0 +1,30 @@
+# .github/workflows/streamlit-ci.yml
+name: Streamlit CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  streamlit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11" # You can adjust this to match your project's Python version
+
+      - name: Run Streamlit App Action
+        uses: streamlit/streamlit-app-action@v0.0.3
+        with:
+          app-path: "interactive_ai_dashboard.py" # Path to your main Streamlit app file
+          # To enable linting with Ruff (optional):
+          # ruff: true 
