@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import streamlit as st # For st.cache_data
+from pathlib import Path
 
 # It's good practice to ensure data files are found relative to the script or a known path
 # For now, assume 'data/raw/wb_combined_indicators.csv' is accessible from where the main app runs.
@@ -9,17 +10,9 @@ import streamlit as st # For st.cache_data
 def load_enhanced_msme_data():
     # Try to load the actual data file
     try:
-        # Assuming the main app.py is at the root, and data is in ./data/
-        # If this script is run from src/utils, paths might need adjustment
-        # For now, keep original paths, assuming execution from root.
-        wb_data_path = os.path.join(os.getcwd(), 'data', 'raw', 'wb_combined_indicators.csv')
-        if not os.path.exists(wb_data_path):
-            # Fallback if not found at root (e.g. if main script is elsewhere or CWD changes)
-            # This is a common issue in modularized apps.
-            # A more robust solution involves passing base_path or using __file__.
-            # For this step, we'll try a common relative path from where streamlit runs (usually project root)
-            wb_data_path = 'data/raw/wb_combined_indicators.csv'
-
+        # Locate data file relative to this module's location (project root)
+        base_dir = Path(__file__).resolve().parents[2]
+        wb_data_path = base_dir / 'data' / 'raw' / 'wb_combined_indicators.csv'
         wb_data = pd.read_csv(wb_data_path)
 
         gdp_growth_2023 = wb_data[(wb_data['indicator'] == 'NY.GDP.MKTP.KD.ZG') & (wb_data['year'] == 2023)]['value'].iloc[0]
