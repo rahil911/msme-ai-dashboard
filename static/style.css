@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Global dark cyberpunk background with reduced brightness */
+.stApp {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 50%, #0b1020 100%);
+    color: #00cccc;
+}
+
+/* Custom Scroll Bar Styling - Subtle and modern */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 15, 30, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00cccc 0%, #0099aa 100%);
+    border-radius: 4px;
+    opacity: 0.6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+    opacity: 0.8;
+}
+
+/* Main content area */
+.main .block-container {
+    background: transparent;
+    padding-top: 2rem;
+}
+
+/* Slideshow Container Component */
+.slideshow-container {
+    position: relative;
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 50%, #0b1020 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    box-shadow: 0 0 20px rgba(0, 204, 204, 0.2);
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    padding: 2rem;
+    min-height: 400px;
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    border-radius: 20px;
+    position: relative;
+}
+
+.slide.active {
+    display: block;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(5, 5, 5, 0.8);
+    border-top: 1px solid rgba(0, 204, 204, 0.3);
+}
+
+.slide-btn {
+    background: linear-gradient(135deg, #00cccc 0%, #0099aa 100%);
+    color: #050505;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.slide-btn:hover {
+    background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 204, 204, 0.4);
+}
+
+.slide-btn.active {
+    background: linear-gradient(135deg, #ff6666 0%, #cc4444 100%);
+    color: white;
+}
+
+.slide-indicator {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 1rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 204, 204, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #00cccc;
+    transform: scale(1.2);
+}
+
+/* Story Narration Component */
+.story-narration {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.story-narration::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00cccc, transparent);
+    animation: narration-glow 3s infinite;
+}
+
+@keyframes narration-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+.story-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    color: #00cccc;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 204, 204, 0.5);
+}
+
+.story-content {
+    color: rgba(0, 204, 204, 0.8);
+    line-height: 1.8;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.main-header {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 50%, #0b1020 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    color: #00cccc;
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    box-shadow: 0 0 20px rgba(0, 204, 204, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 204, 204, 0.05) 50%, transparent 70%);
+    animation: sweep 4s infinite;
+}
+
+@keyframes sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(204, 102, 153, 0.4);
+    box-shadow: 0 0 15px rgba(204, 102, 153, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 0 25px rgba(204, 102, 153, 0.4);
+    border-color: rgba(0, 204, 204, 0.6);
+}
+
+.chart-container {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    box-shadow: 0 0 15px rgba(0, 204, 204, 0.2);
+    margin: 2rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.chart-container:hover {
+    box-shadow: 0 0 25px rgba(0, 204, 204, 0.3);
+    transform: translateY(-3px);
+}
+
+.ai-chat-container {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 50%, #0b1020 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(204, 102, 153, 0.4);
+    box-shadow: 0 0 20px rgba(204, 102, 153, 0.2);
+    margin: 2rem 0;
+    position: sticky;
+    top: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.filter-section {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    box-shadow: 0 0 15px rgba(0, 204, 204, 0.1);
+}
+
+.insight-card {
+    background: linear-gradient(135deg, rgba(204, 102, 153, 0.8) 0%, rgba(0, 204, 204, 0.8) 100%);
+    color: #050505;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    box-shadow: 0 0 20px rgba(204, 102, 153, 0.3);
+    animation: soft-pulse 4s infinite;
+    font-weight: 600;
+}
+
+@keyframes soft-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(204, 102, 153, 0.3);
+        opacity: 0.9;
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 204, 204, 0.4);
+        opacity: 1;
+    }
+}
+
+.top-control-bar {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 50%, #0b1020 100%);
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    box-shadow: 0 0 15px rgba(0, 204, 204, 0.2);
+    margin: 1rem 0 2rem 0;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 180px;
+}
+
+.control-label {
+    color: #00cccc;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(0, 204, 204, 0.4);
+}
+
+.section-header {
+    font-size: 2.2rem;
+    font-weight: 900;
+    font-family: 'Orbitron', monospace;
+    color: #00cccc;
+    margin: 3rem 0 1.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow:
+        0 0 8px rgba(0, 204, 204, 0.4),
+        0 0 15px rgba(0, 204, 204, 0.2);
+}
+
+.section-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 120%;
+    background: linear-gradient(135deg, #cc6699, #00cccc);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(204, 102, 153, 0.4);
+    animation: header-soft-glow 3s infinite;
+}
+
+@keyframes header-soft-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(204, 102, 153, 0.4); }
+    50% { box-shadow: 0 0 15px rgba(0, 204, 204, 0.6); }
+}
+
+/* Streamlit component overrides with reduced brightness */
+.stSelectbox > div > div {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    border-radius: 10px;
+    color: #00cccc;
+}
+
+.stMultiSelect > div > div {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    border: 1px solid rgba(0, 204, 204, 0.4);
+    border-radius: 10px;
+    color: #00cccc;
+}
+
+.stSlider > div > div > div {
+    background: linear-gradient(135deg, #cc6699 0%, #00cccc 100%);
+}
+
+.stButton > button {
+    background: linear-gradient(135deg, #cc6699 0%, #00cccc 100%);
+    color: #050505;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(204, 102, 153, 0.2);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 204, 204, 0.4);
+    background: linear-gradient(135deg, #00cccc 0%, #cc6699 100%);
+}
+
+/* Info boxes styling */
+.stAlert {
+    background: linear-gradient(135deg, #050505 0%, #0f0f1e 100%);
+    border-left: 4px solid #00cccc;
+    border-radius: 10px;
+    color: #00cccc;
+}
+
+/* Metric display enhancements */
+.metric-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #00cccc;
+    text-shadow: 0 0 15px rgba(0, 204, 204, 0.5);
+    margin: 1rem 0;
+}
+
+.metric-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #cc6699;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.metric-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(0, 204, 204, 0.6);
+    font-style: italic;
+}
+
+/* High contrast text for readability */
+h1, h2, h3, h4, h5, h6 {
+    color: #00cccc !important;
+    font-family: 'Orbitron', monospace !important;
+    text-shadow: 0 0 8px rgba(0, 204, 204, 0.3);
+}
+
+p, span, div {
+    color: rgba(0, 204, 204, 0.8) !important;
+}
+
+/* Data visualization enhancements */
+.plotly-chart {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Strategic Blueprint / Roadmap Styles */
+.strategic-roadmap-container {
+    background: linear-gradient(145deg, #0a0a12 0%, #101022 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin: 2.5rem 0;
+    border: 1px solid rgba(0, 204, 204, 0.3);
+    box-shadow: 0 0 25px rgba(0, 204, 204, 0.15);
+}
+
+.roadmap-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(15, 15, 30, 0.7);
+    border-radius: 15px;
+    border-left: 5px solid #cc6699; /* Accent color */
+    transition: all 0.3s ease;
+}
+
+.roadmap-step:hover {
+    transform: translateX(5px);
+    border-left-color: #00cccc; /* Highlight on hover */
+}
+
+.roadmap-step:last-child {
+    margin-bottom: 0;
+}
+
+.roadmap-icon {
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+    color: #cc6699; /* Accent color */
+    flex-shrink: 0;
+    padding-top: 0.2rem; /* Align icon better with text */
+}
+
+.roadmap-content h4 {
+    font-family: 'Orbitron', monospace;
+    color: #00cccc; /* Main highlight color */
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.roadmap-content p {
+    color: rgba(0, 204, 204, 0.85) !important; /* Ensure high contrast */
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.roadmap-content ul li {
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+    margin-bottom: 0.4rem;
+    color: rgba(0, 204, 204, 0.8) !important;
+}
+
+.roadmap-content ul li::before {
+    content: "⚡"; /* Cyberpunk bullet */
+    margin-right: 0.5em;
+    color: #cc6699; /* Accent color */
+}
+/* End of Strategic Blueprint Styles */
