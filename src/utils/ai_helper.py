@@ -1,6 +1,7 @@
 import streamlit as st # For session_state and secrets
 import openai # For OpenAI client
 import json # Though not used in current functions, good to keep if future AI responses are complex JSON
+import httpx # Import httpx
 
 def get_enhanced_chart_context(chart_type, data_summary, filters):
     filter_context = f"""

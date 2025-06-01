@@ -227,7 +227,7 @@ with col1:
         st.markdown("### 📊 India's Economic Foundation for MSME Growth (2010-2024)")
         try:
             with open('output/images/chapter1_economic_foundation.png', 'rb') as f:
-                st.image(f.read(), caption="Chapter 1: Economic Foundation - Generated from EXACT World Bank Data", use_column_width=True)
+                st.image(f.read(), caption="Chapter 1: Economic Foundation - Generated from EXACT World Bank Data", use_container_width=True)
             st.success("✅ **This visualization uses EXACT World Bank data from `wb_combined_indicators.csv`**")
         except Exception as e:
             st.error(f"❌ Could not load Chapter 1 image: {e}")
@@ -236,7 +236,7 @@ with col1:
         st.markdown("### 🎯 MSME Opportunity Matrix - Data-Driven Sector Analysis")
         try:
             with open('output/images/chapter2_msme_opportunities.png', 'rb') as f:
-                st.image(f.read(), caption="Chapter 2: MSME Opportunities - Based on Research Data", use_column_width=True)
+                st.image(f.read(), caption="Chapter 2: MSME Opportunities - Based on Research Data", use_container_width=True)
             st.success("✅ **This shows the actual sector analysis from your unified story**")
         except Exception as e:
             st.error(f"❌ Could not load Chapter 2 image: {e}")
@@ -245,7 +245,7 @@ with col1:
         st.markdown("### 🌐 India's Export Growth Journey & MSME Potential (2010-2030)")
         try:
             with open('output/images/chapter3_export_pathway.png', 'rb') as f:
-                st.image(f.read(), caption="Chapter 3: Export Pathway - Current: 21.85% of GDP", use_column_width=True)
+                st.image(f.read(), caption="Chapter 3: Export Pathway - Current: 21.85% of GDP", use_container_width=True)
             st.success("✅ **Shows real export data: 21.85% of GDP (2023) targeting 25% by 2030**")
         except Exception as e:
             st.error(f"❌ Could not load Chapter 3 image: {e}")
@@ -808,11 +808,26 @@ with col1:
         """, unsafe_allow_html=True)
     
         if st.session_state.chat_history:
-            for role, text in st.session_state.chat_history[-10:]:
-                if role == "user":
-                    st.markdown(f'<div class="chat-bubble user-bubble">{text}</div>', unsafe_allow_html=True)
-                else:
-                    st.markdown(f'<div class="chat-bubble ai-bubble">{text}</div>', unsafe_allow_html=True)
+            for entry in st.session_state.chat_history[-10:]: # Iterate through a copy or recent items
+                if isinstance(entry, tuple) and len(entry) == 2:
+                    role, text = entry
+                    if role == "user":
+                        st.markdown(f'<div class="chat-bubble user-bubble">{text}</div>', unsafe_allow_html=True)
+                    else:
+                        st.markdown(f'<div class="chat-bubble ai-bubble">{text}</div>', unsafe_allow_html=True)
+                elif isinstance(entry, dict) and 'question' in entry and 'response' in entry:
+                    # This section is for the other chat history format, display as Q&A
+                    # This part of the UI (chat bubbles) might not be the best place for Q&A format.
+                    # Consider if you want to display dict-formatted history here, or only in the expander section.
+                    # For now, let's display user's question from dict format if it's a user turn.
+                    # Or display AI response if it's an AI turn (though dicts usually have both Q and A).
+                    # This part might need more UI/UX thought based on how you want to mix formats.
+                    # A simple approach:
+                    st.markdown(f'<div class="chat-bubble user-bubble">Q: {entry["question"]}</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="chat-bubble ai-bubble">A: {entry["response"]}</div>', unsafe_allow_html=True)
+                # else:
+                    # Optionally handle or log unexpected chat entry formats
+                    # st.warning("Unsupported chat history format encountered.")
         
         user_query_ai = st.text_area("💬 Ask the AI:", key="ai_chat_input_panel", height=100)
 
@@ -870,11 +885,28 @@ with col2:
     # Chat History
     if st.session_state.chat_history:
         st.markdown("#### 💬 Recent Conversations")
-        for i, chat in enumerate(st.session_state.chat_history[-2:]):
-            with st.expander(f"💡 {chat['question'][:30]}..."):
-                st.markdown(f"**Q:** {chat['question']}")
-                st.markdown(f"**AI:** {chat['response']}")
-                st.caption(f"⏰ {chat.get('timestamp', 'Unknown time')}")
+        for i, chat_item in enumerate(st.session_state.chat_history[-2:]): # Iterate through a copy or recent items
+            if isinstance(chat_item, dict) and 'question' in chat_item and 'response' in chat_item:
+                question = chat_item['question']
+                response = chat_item['response']
+                timestamp = chat_item.get('timestamp', 'Unknown time')
+                with st.expander(f"💡 {question[:30]}..."):
+                    st.markdown(f"**Q:** {question}")
+                    st.markdown(f"**AI:** {response}")
+                    st.caption(f"⏰ {timestamp}")
+            elif isinstance(chat_item, tuple) and len(chat_item) == 2:
+                role, text = chat_item
+                # Decide how to display tuple-based chat history in this expander
+                # For example, show user queries or AI responses directly
+                if role == "user":
+                    with st.expander(f"👤 User: {text[:30]}..."):
+                        st.markdown(text)
+                else: # AI
+                    with st.expander(f"🤖 AI: {text[:30]}..."):
+                        st.markdown(text)
+            # else:
+                # Optionally log or display a message for unsupported formats
+                # st.write(f"Skipping item {i}: Unsupported format")
     
     # Current question
     st.markdown("#### ❓ Ask About Current Analysis")
